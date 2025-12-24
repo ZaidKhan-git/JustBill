@@ -38,10 +38,10 @@ export function FileUpload({ onFileSelect }: FileUploadProps) {
       <div
         {...getRootProps()}
         className={cn(
-          "relative cursor-pointer overflow-hidden rounded-lg border-2 border-dashed transition-all duration-200",
+          "relative cursor-pointer overflow-hidden rounded-xl border-2 border-dashed transition-all duration-200",
           isDragActive 
-            ? "border-primary bg-primary/5" 
-            : "border-slate-300 hover:border-primary hover:bg-slate-50"
+            ? "border-blue-400 bg-blue-50 scale-[1.02]" 
+            : "border-slate-300 hover:border-blue-400 hover:bg-blue-50/50"
         )}
       >
         <input {...getInputProps()} />
@@ -52,38 +52,40 @@ export function FileUpload({ onFileSelect }: FileUploadProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center py-12 px-4 text-center"
+              className="flex flex-col items-center justify-center py-16 px-4 text-center"
             >
-              <div className="mb-4 text-slate-400">
-                <Upload className="h-10 w-10 mx-auto" strokeWidth={1.5} />
-              </div>
-              <h3 className="mb-2 text-base font-semibold text-slate-950">
-                Upload Medical Bill
+              <motion.div 
+                className="mb-4 p-4 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl"
+                animate={isDragActive ? { scale: 1.1 } : { scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Upload className="h-8 w-8 text-blue-600" strokeWidth={1.5} />
+              </motion.div>
+              <h3 className="mb-2 text-lg font-semibold text-slate-950">
+                Upload Your Medical Bill
               </h3>
               <p className="mb-4 text-sm text-slate-600 max-w-xs mx-auto">
-                Drag and drop your bill image or PDF, or click to select
+                Drag and drop your bill image or PDF here, or click to select
               </p>
-              <div className="flex gap-2 text-xs text-slate-500">
-                <span>JPG</span>
-                <span>•</span>
-                <span>PNG</span>
-                <span>•</span>
-                <span>PDF</span>
+              <div className="flex gap-3 text-xs text-slate-500 font-medium">
+                <span className="px-3 py-1 bg-slate-100 rounded-full">JPG</span>
+                <span className="px-3 py-1 bg-slate-100 rounded-full">PNG</span>
+                <span className="px-3 py-1 bg-slate-100 rounded-full">PDF</span>
               </div>
             </motion.div>
           ) : (
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex items-center justify-between p-4"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="flex items-center justify-between p-6"
             >
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-slate-100 rounded-lg">
-                  <FileText className="h-6 w-6 text-slate-700" strokeWidth={2} />
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl">
+                  <FileText className="h-6 w-6 text-green-600" strokeWidth={2} />
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-slate-900 line-clamp-1">
+                  <p className="text-sm font-semibold text-slate-950 line-clamp-1">
                     {file.name}
                   </p>
                   <p className="text-xs text-slate-500">
@@ -93,7 +95,7 @@ export function FileUpload({ onFileSelect }: FileUploadProps) {
               </div>
               <button 
                 onClick={removeFile}
-                className="p-1 hover:bg-slate-100 rounded transition-colors text-slate-400"
+                className="p-2 hover:bg-slate-100 rounded-lg transition-colors text-slate-400 hover:text-red-500"
               >
                 <X className="h-5 w-5" />
               </button>
