@@ -1,0 +1,125 @@
+{
+  "id": "jcafz2pxyxmjpmppoi",
+  "hospitalName": "Dharamshila Narayana Superspeciality Hospital",
+  "billDate": "2023-10-21",
+  "billNumber": "IB150523J002605",
+  "state": {
+    "name": "Delhi",
+    "code": "DL",
+    "tier": 1
+  },
+  "summary": {
+    "totalBilled": 1027.18,
+    "totalFairPrice": 1477.18,
+    "overchargeAmount": 0,
+    "discount": 0,
+    "cgst": 0,
+    "sgst": 0,
+    "itemCount": 8,
+    "overchargedCount": 0,
+    "fairCount": 1,
+    "notFoundCount": 7,
+    "savingsPercent": 0
+  },
+  "items": [
+    {
+      "itemName": "I/D Injection Keloid (CGHS - 2B)",
+      "category": "Medicine",
+      "quantity": 1,
+      "unitPrice": 112,
+      "totalBilled": 112,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "EMERGENCY CONSULTATION CHARGE",
+      "category": "Consultation",
+      "quantity": 1,
+      "unitPrice": 350,
+      "totalBilled": 350,
+      "govtCeilingPrice": 800,
+      "overchargeAmount": 0,
+      "status": "fair",
+      "priceSource": "CGHS (CGHS-C004)",
+      "sourceDate": "2024-01-01",
+      "notes": "Price is at or below government ceiling"
+    },
+    {
+      "itemName": "ECG (CGHS code:590)",
+      "category": "Test",
+      "quantity": 1,
+      "unitPrice": 175,
+      "totalBilled": 175,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "Blood Glucose Random( CGHS Code No. 1444)",
+      "category": "Test",
+      "quantity": 1,
+      "unitPrice": 28,
+      "totalBilled": 28,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "CLONAZEPAM-TABLET-0.5MG-CLONOTRI- |2JC6K006 / 2025-11-30 (30049082)",
+      "category": "Medicine",
+      "quantity": 1,
+      "unitPrice": 3.48,
+      "totalBilled": 3.48,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "ONDANSETRON-INJECTION-8MG/4ML-PERISET- | EWI023002D / 2025-05-31 (30049035)",
+      "category": "Medicine",
+      "quantity": 1,
+      "unitPrice": 26.7,
+      "totalBilled": 26.7,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "IV CANNULA--22G-ULTRA 1201 POLYMED- |4118423G / 2028-06-30 (90183920)",
+      "category": "Consumable",
+      "quantity": 1,
+      "unitPrice": 185,
+      "totalBilled": 185,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    },
+    {
+      "itemName": "TRANSPARENT ADHESIVE DRESSING-PO675P W/O PAD PLAIN-6CM X 7.5CM-RELIDERM I.V GUJARAT HEALTH CARE- |239018 / 2026-08-31 (30059040)",
+      "category": "Consumable",
+      "quantity": 1,
+      "unitPrice": 147,
+      "totalBilled": 147,
+      "govtCeilingPrice": null,
+      "overchargeAmount": 0,
+      "status": "not_found",
+      "priceSource": null,
+      "notes": "No government reference price found for this item"
+    }
+  ],
+  "ocrConfidence": 95,
+  "parsingMethod": "gemini-vision"
+}
