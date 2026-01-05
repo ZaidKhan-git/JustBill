@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { FileUpload } from '@/components/ui/file-upload';
 import { LocationSelector } from './LocationSelector';
 import { AnalysisResult } from './AnalysisResult';
+import { ScanLoader } from '@/components/ui/ScanLoader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, CheckCircle, Zap, AlertCircle, Info, FileX, Home } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
@@ -201,7 +202,7 @@ export function BillAnalyzer() {
                 </div>
               </div>
               <h1 className="text-5xl font-bold text-slate-950">
-                Verify Your Hospital Bill
+                JustBill
               </h1>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Upload your medical bill to instantly compare costs against government standards and identify any overcharges.
@@ -299,49 +300,12 @@ export function BillAnalyzer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center min-h-[400px]"
+            className="flex flex-col items-center justify-center min-h-[500px]"
           >
-            <div className="max-w-md w-full">
-              <div className="mb-8">
-                <div className="flex justify-between items-end gap-4">
-                  {steps.map((step, idx) => (
-                    <motion.div
-                      key={idx}
-                      className={`flex-1 transition-all ${idx <= analyzeStep ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`}
-                      animate={idx <= analyzeStep ? { scale: 1, opacity: 1 } : { scale: 0.95, opacity: 0.5 }}
-                    >
-                      <div className={`p-3 rounded-xl mb-2 text-center ${idx <= analyzeStep ? 'bg-blue-100' : 'bg-slate-100'}`}>
-                        <span className="text-2xl">{step.icon}</span>
-                      </div>
-                      <p className="text-xs text-slate-600 text-center">{step.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <h3 className="text-xl font-bold text-slate-950 mb-2 text-center">
-                {steps[analyzeStep].label}
-              </h3>
-
-              <p className="text-slate-600 mb-6 text-center text-sm">
-                Processing your medical bill and comparing against government pricing standards.
-              </p>
-
-              <div className="space-y-2">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Progress</span>
-                  <span className="text-xs font-medium text-slate-600">{Math.floor(progress)}%</span>
-                </div>
-                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-blue-500 to-indigo-500"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progress}%` }}
-                    transition={{ duration: 0.1 }}
-                  />
-                </div>
-              </div>
-            </div>
+            <ScanLoader
+              progress={progress}
+              currentStep={steps[analyzeStep].label}
+            />
           </motion.div>
         )}
 

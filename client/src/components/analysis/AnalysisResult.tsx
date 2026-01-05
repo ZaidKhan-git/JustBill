@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { CheckCircle2, AlertCircle, AlertTriangle, HelpCircle, Download, TrendingDown, Shield, Calendar, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { JargonChip } from './JargonChip';
+import { JargonBusterDrawer } from './JargonBusterDrawer';
+import { AnimatedGradient } from '@/components/ui/animated-gradient-with-svg';
 
 interface BillItem {
   itemName: string;
@@ -54,6 +58,19 @@ const COLORS = {
 
 export function AnalysisResult({ data }: AnalysisResultProps) {
   const { summary, items, hospitalName, billDate, state } = data;
+
+  // Jargon Buster state
+  const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleExplainTerm = (term: string) => {
+    setSelectedTerm(term);
+    setIsDrawerOpen(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+  };
 
   // Build chart data by category
   const categoryTotals: Record<string, number> = {};
@@ -118,7 +135,15 @@ export function AnalysisResult({ data }: AnalysisResultProps) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-6">
+    <div className="w-full max-w-5xl mx-auto space-y-6 relative">
+      {/* Animated Background - Fixed Full Screen */}
+      <div className="fixed inset-0 -z-50 pointer-events-none">
+        <AnimatedGradient
+          colors={["#3B82F6", "#60A5FA", "#93C5FD", "#A5B4FC"]}
+          speed={0.05}
+          blur="medium"
+        />
+      </div>
 
       {/* Header */}
       <motion.div
@@ -230,8 +255,8 @@ export function AnalysisResult({ data }: AnalysisResultProps) {
                 >
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium text-slate-950 text-sm">{item.itemName}</h4>
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <JargonChip term={item.itemName} onExplain={handleExplainTerm} />
                         {getStatusBadge(item.status)}
                       </div>
                       <div className="flex items-center gap-3 text-xs text-slate-500">
@@ -410,6 +435,13 @@ export function AnalysisResult({ data }: AnalysisResultProps) {
           Share Results
         </button>
       </motion.div>
+
+      {/* Jargon Buster Drawer */}
+      <JargonBusterDrawer
+        term={selectedTerm}
+        isOpen={isDrawerOpen}
+        onClose={handleCloseDrawer}
+      />
     </div>
   );
 }

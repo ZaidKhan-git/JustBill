@@ -74,6 +74,20 @@ export type GovtPrice = typeof govtPrices.$inferSelect;
 export type InsertGovtPrice = typeof govtPrices.$inferInsert;
 
 // ============================================================================
+// JARGON BUSTER CACHE
+// ============================================================================
+export const jargonTerms = pgTable("jargon_terms", {
+  term: varchar("term").primaryKey(), // Normalized term (lowercase, trimmed)
+  explanation: text("explanation").notNull(),
+  estimatedCost: varchar("estimated_cost").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type JargonTerm = typeof jargonTerms.$inferSelect;
+export type InsertJargonTerm = typeof jargonTerms.$inferInsert;
+
+// ============================================================================
 // BILL ANALYSES (User's analyzed bills)
 // ============================================================================
 export const billAnalyses = pgTable("bill_analyses", {

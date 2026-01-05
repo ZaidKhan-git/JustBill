@@ -8,6 +8,7 @@ import { validateMedicalBill } from "./services/validator";
 import { parseWithMindee, isMindeeAvailable } from "./services/mindee-parser";
 import { parseWithGeminiAI, parseTextWithGemini, isGeminiAvailable } from "./services/ai-parser";
 import { hashPassword, verifyPassword, isValidEmail, isValidPassword, requireAuth } from "./services/auth";
+import { explainMedicalTerm, isDeepSeekAvailable } from "./services/jargon-buster";
 import { statesData, categoriesData } from "./seeds/states-categories";
 import { govtPricesData } from "./seeds/govt-prices";
 
@@ -241,6 +242,51 @@ export async function registerRoutes(
       })),
       totalItems: priceDatabase.length,
     });
+  });
+
+  // ============================================================================
+  // JARGON BUSTER (Medical term explanations)
+  // ============================================================================
+
+  // Explain a medical term using DeepSeek AI
+  app.post('/api/jargon/explain', async (req: Request, res: Response) => {
+    try {
+      const { term } = req.body;
+
+      // Validate request
+      if (!term || typeof term !== 'string' || term.trim().length === 0) {
+        return res.status(400).json({
+          error: 'Invalid request',
+          fallback_message: 'Please provide a valid medical term.',
+        });
+      }
+
+      // Check if DeepSeek is available
+      if (!isDeepSeekAvailable()) {
+        return res.status(503).json({
+          error: 'Service unavailable',
+          fallback_message: 'Unable to fetch explanation. Please check local medical listings or consult your healthcare provider.',
+        });
+      }
+
+      // Get explanation (from cache or API)
+      const explanation = await explainMedicalTerm(term.trim());
+
+      if (!explanation) {
+        return res.status(503).json({
+          error: 'API error',
+          fallback_message: 'Unable to fetch explanation at this time. Please try again later.',
+        });
+      }
+
+      res.json(explanation);
+    } catch (error) {
+      console.error('Jargon explain error:', error);
+      res.status(500).json({
+        error: 'Internal server error',
+        fallback_message: 'An unexpected error occurred. Please try again.',
+      });
+    }
   });
 
   // ============================================================================

@@ -4,16 +4,14 @@ import { ShieldCheck, Menu } from "lucide-react";
 export function Navbar() {
   return (
     <nav className="border-b border-slate-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 cursor-pointer group">
-          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-lg group-hover:shadow-lg transition-all duration-300">
-            <ShieldCheck className="h-5 w-5 text-white" strokeWidth={2.5} />
-          </div>
+          <img src="/logo.png" alt="JustBill Logo" className="h-16 w-16 object-contain" />
           <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            MediScan
+            JustBill
           </span>
         </Link>
-        
+
         <div className="flex items-center gap-8">
           <a href="#" className="text-sm text-slate-600 hover:text-blue-600 transition-colors font-medium">Documentation</a>
           <a href="#" className="text-sm text-slate-600 hover:text-blue-600 transition-colors font-medium">Standards</a>
