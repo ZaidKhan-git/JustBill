@@ -39,7 +39,7 @@ export const statesData = [
     { name: "Delhi", code: "DL", tier: 1 }, // NCR
     { name: "Jammu and Kashmir", code: "JK", tier: 2 },
     { name: "Ladakh", code: "LA", tier: 3 },
-    { name: "Lakshadweep", code: "LD", tier: 1 },
+    { name: "Lakshadweep", code: "LD", tier: 3 },
     { name: "Puducherry", code: "PY", tier: 2 },
 ];
 

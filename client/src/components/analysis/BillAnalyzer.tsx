@@ -6,6 +6,7 @@ import { ScanLoader } from '@/components/ui/ScanLoader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, CheckCircle, Zap, AlertCircle, Info, FileX, Home } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
+import { SparklesCore } from '@/components/ui/sparkles';
 
 type AnalysisState = 'idle' | 'analyzing' | 'complete' | 'error' | 'invalid_bill';
 
@@ -196,17 +197,35 @@ export function BillAnalyzer() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex justify-center mb-4">
-                <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl">
-                  <Zap className="w-8 h-8 text-blue-600" strokeWidth={1.5} />
+              <div className="flex justify-center mb-2">
+                <img
+                  src="/logo.png"
+                  alt="JustBill Logo"
+                  className="w-48 h-48 object-contain mix-blend-multiply"
+                />
+              </div>
+              <div className="relative inline-block">
+                <h1 className="text-5xl font-bold text-slate-950 relative z-20">
+                  JustBill
+                </h1>
+                <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 h-20 w-[120%] z-10 pointer-events-none opacity-80">
+                  <SparklesCore
+                    background="transparent"
+                    minSize={0.4}
+                    maxSize={1}
+                    particleDensity={1200}
+                    className="w-full h-full"
+                    particleColor="#3B82F6"
+                    speed={0.5}
+                  />
                 </div>
               </div>
-              <h1 className="text-5xl font-bold text-slate-950">
-                JustBill
-              </h1>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Upload your medical bill to instantly compare costs against government standards and identify any overcharges.
               </p>
+
+
+
             </motion.div>
 
             {/* Location Selector */}
